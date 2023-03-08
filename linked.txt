@@ -1,0 +1,56 @@
+
+
+                             //LINKED  LIST
+
+#include<bits/stdc++.h>
+using namespace std;
+
+struct node{
+  int data;
+   node* next;
+  
+}*first;
+
+void create(int a[],int n){
+  struct node *t,*last;
+  first=new node;
+  first ->data=a[0];
+  first ->next=0;
+  last=first;
+  for(int i=0;i<n;i++){
+    t=new node;
+    t->data=a[i];
+    t->next=NULL;
+    last->next=t;
+    last =t;
+  }
+  
+}
+
+void display(){
+  struct node*p=first;
+  p=p->next;
+  
+  while(p!=NULL){
+    cout<<(p->data)<<"   "<<(p->next)<<endl;
+    
+    p=p->next;
+  }
+}
+
+
+void add(int i){
+  
+}
+int main(){
+ 
+  int n;
+  cin>>n;
+  int a[n];
+  for(int i=0;i<n;i++){
+    cin>>a[i];
+  }
+  create(a,n);
+display();
+ return 0;
+ }
