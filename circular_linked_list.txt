@@ -1,0 +1,81 @@
+//                     circular linked list   
+                
+#include <bits/stdc++.h>
+using namespace std;
+
+struct cn{               //creation of a structure for doubly_linked list
+    int data;
+    struct cn* next;
+    struct cn* back;
+}*first;
+
+void create(int a[],int n){    //creation of a circular linked list
+    first=new cn;
+    first->data=a[0];
+    first->next=NULL;
+    struct cn* p=first;
+    struct cn*t;
+    for(int i=1;i<n;i++){
+    t=new cn;
+    t->data=a[i];
+    t->next=NULL;
+    p->next=t;
+    t->back=p;
+    p=t;
+    }   
+     p->next=first;
+     first->back=p;
+}
+void display(cn*p,string dir,int n){    //display function to dispaly the list, both in clockwise and anti_cockwise direction
+    int k=0;
+    if(dir=="clockwise"){
+    while(k<n){
+      cout<<p->data<<" ";
+      p=p->next;
+      k++;  
+    }
+    }
+    if(dir=="anti_clockwise"){
+    while(k<n){
+      cout<<p->data<<" ";
+      p=p->back;
+      k++;  
+    }
+    }
+}
+
+void insert(int key,int d,int &c){  //to insert any new element before mentioned key
+    c++;       //incrementing n(size of list)
+    struct cn* n=new cn;
+   
+    struct cn*p=first,*q;
+    while(p->data!=key){
+         q=p;
+        p=p->next;
+       
+    }
+    n->data=d;
+    q->next=n;
+    n->back=q;
+    n->next=p;
+    p->back=n;
+    
+}
+
+int main(){
+    int n;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    create(a,n);  
+     insert(3,7,n);
+            // increment n after inserting a new element;
+    display(first,"clockwise",n);   
+    cout<<endl;
+   
+   display(first,"anti_clockwise",n);
+    
+    return 0;
+}
